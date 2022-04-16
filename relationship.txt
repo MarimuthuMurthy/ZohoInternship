@@ -1,0 +1,68 @@
+
+package javaapplication14;
+//Interface
+interface LivingBeing{
+    abstract String RespiratorySystem();
+    abstract String BloodCirculation();
+}
+//IS-A relationship(EVERY HUMAN IS A MAMMAL)
+class Mammal{
+    public int hands;
+    public int legs;
+    Mammal(int hands,int legs){
+        this.hands=hands;
+        this.legs=legs;
+    }
+}
+//(HAS-A relationship,(COMPOSITION)- human HAS-A heart)
+class Heart{
+    String inhale="Oxygen";
+    String exhale="carbondioxide";
+}
+//HAS-A relationship(Aggregation)(human has a watch)
+class Watch{
+    public void time(){
+        System.out.println("iam a watch");
+    }
+}
+class Person  extends Mammal implements LivingBeing{
+    public String RespiratorySystem(){
+        return "through nose";
+    }
+    public String BloodCirculation(){
+        return "through veins";
+    }
+    Person(int hands,int legs){
+        super(hands,legs);
+    }
+    //here i want to show composition sir
+    Heart h=new Heart();
+    //here i want to show aggregation sir
+    Watch watch;
+    public void display(){
+        System.out.println(RespiratorySystem()+" "+BloodCirculation()+" "+ hands+" "+legs+h.inhale+" "+h.exhale);
+    }
+}
+public class JavaApplication14 {
+
+    public static void main(String[] args) {
+        //sir,here i create person object,then automatically in heap,it create human object 
+        //along with heart object
+        Person p=new Person(2,2);
+        p.RespiratorySystem();
+        p.BloodCirculation();
+        p.display();
+        //heart object is created in heap
+        p=null;
+        //here both person object and heart object goes to garbage collection
+        //here person and heart has ****strongly associated*****(COMPOSITION)
+        
+        Person p1=new Person(2,2);
+        Watch w1=new Watch();
+        p1.watch=w1;
+        p1=null;
+        //here p1 only goes to garbage collection
+        //w1 still exist in memory
+        //******weakly associated*******(AGGREGATION)
+     }
+}
