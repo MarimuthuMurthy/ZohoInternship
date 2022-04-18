@@ -26,6 +26,7 @@ class Watch{
     }
 }
 class Person  extends Mammal implements LivingBeing{
+    Watch watch;
     public String RespiratorySystem(){
         return "through nose";
     }
@@ -35,10 +36,12 @@ class Person  extends Mammal implements LivingBeing{
     Person(int hands,int legs){
         super(hands,legs);
     }
+    Person(Watch w1){
+        watch=w1;
+    }
     //here i want to show composition sir
     Heart h=new Heart();
     //here i want to show aggregation sir
-    Watch watch;
     public void display(){
         System.out.println(RespiratorySystem()+" "+BloodCirculation()+" "+ hands+" "+legs+h.inhale+" "+h.exhale);
     }
@@ -59,7 +62,7 @@ public class JavaApplication14 {
         
         Person p1=new Person(2,2);
         Watch w1=new Watch();
-        p1.watch=w1;
+        p1(w1);
         p1=null;
         //here p1 only goes to garbage collection
         //w1 still exist in memory
