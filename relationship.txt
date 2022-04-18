@@ -1,68 +1,79 @@
 
-package javaapplication14;
-//Interface
-interface LivingBeing{
-    abstract String RespiratorySystem();
-    abstract String BloodCirculation();
-}
-//IS-A relationship(EVERY HUMAN IS A MAMMAL)
-class Mammal{
-    public int hands;
-    public int legs;
-    Mammal(int hands,int legs){
-        this.hands=hands;
-        this.legs=legs;
+class Course{
+    String book1;
+    String book2;
+    Course(String book1,String book2){
+        this.book1=book1;
+        this.book2=book2;
+    }
+    public String toString(){
+        return book1+" "+book2;
     }
 }
-//(HAS-A relationship,(COMPOSITION)- human HAS-A heart)
-class Heart{
-    String inhale="Oxygen";
-    String exhale="carbondioxide";
-}
-//HAS-A relationship(Aggregation)(human has a watch)
-class Watch{
-    public void time(){
-        System.out.println("iam a watch");
+class Student1{
+    String name;
+    int age;
+    Address address;
+    Student1(String name,int age,Address address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
     }
-}
-class Person  extends Mammal implements LivingBeing{
-    Watch watch;
-    Heart h1;
-    public String RespiratorySystem(){
-        return "through nose";
+    public String toString(){
+        return name+" "+age+" "+address+" ";
     }
-    public String BloodCirculation(){
-        return "through veins";
-    }
-    Person(int hands,int legs){
-        super(hands,legs);
-        h1=new Heart();
-    }
-    Person(Watch w1){
-        watch=w1;
-    }
-    public void display(){
-        System.out.println(RespiratorySystem()+" "+BloodCirculation()+" "+ hands+" "+legs+h1.inhale+" "+h1.exhale);
-    }
-}
-public class JavaApplication14 {
 
-    public static void main(String[] args) {
-        //sir,here i create person object,then automatically in heap,it create human object 
-        //along with heart object
-        Person p=new Person(2,2);
-        p.display();
-        //heart object is created in heap
-        p=null;
-        //here both person object and heart object goes to garbage collection
-        //here person and heart has ****strongly associated*****(COMPOSITION)
-        
-        Person p1=new Person(2,2);
-        Watch w1=new Watch();
-        p1(w1);
-        p1=null;
-        //here p1 only goes to garbage collection
-        //w1 still exist in memory
-        //******weakly associated*******(AGGREGATION)
-     }
 }
+class Department {
+    Student1 student;
+    Course course;
+    Department(Student1 student,Course course){
+        this.student=student;
+        this.course=course;
+    }
+    public String toString(){
+        return student+" "+course;
+    }
+
+}
+class University{
+    Department department;
+    Course c1;
+    Student1 s1;
+    University(Student1 s1,Course c1){
+        this.department =new Department(s1,c1);
+    }
+    public String toString(){
+        return c1+" "+department+" "+s1;
+    }
+}
+class Address{
+    String area;
+    String city;
+    String pincode;
+    Address(String area,String city,String pincode){
+        this.area=area;
+        this.city=city;
+        this.pincode=pincode;
+    }
+    public String toString(){
+        return area+" "+city+" "+pincode;
+    }
+}
+public class RelationSHip {
+    public static void main(String args[]){
+        Address add=new Address("tirupati","Chittoor","517501");
+        Student1 student=new Student1("M.Murthy",21,add);
+        Course course=new Course("java","python");
+        Department department=new Department(student,course);
+        University university=new University(student,course);
+        university =null;
+        System.out.println(add);
+        System.out.println(student);
+        System.out.println(course);
+        System.out.println(department);
+        System.out.println(university);
+    }
+}
+//______________________________________________________________________________________
+
