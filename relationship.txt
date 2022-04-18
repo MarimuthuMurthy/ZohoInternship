@@ -1,4 +1,13 @@
 
+class EducationInstitute {
+    String InstituteName;
+    String InstitutePlace;
+    EducationInstitute(String name,String place){
+        this.InstituteName=name;
+        this.InstitutePlace=place;
+    }
+
+}
 class Course{
     String book1;
     String book2;
@@ -38,9 +47,10 @@ class Department {
     }
 
 }
-class University{
+class University extends EducationInstitute{
     Department department;
-    University(Student1 s1,Course c1,String departmentName){
+    University(Student1 s1,Course c1,String departmentName,String name,String place){
+        super(name,place);
         this.department =new Department(s1,c1,departmentName);
     }
 }
@@ -57,12 +67,12 @@ class Address{
         return area+" "+city+" "+pincode;
     }
 }
-public class RelationShip {
+public class RelationSHip {
     public static void main(String args[]){
         Address add=new Address("tirupati","Chittoor","517501");
         Student1 student=new Student1("M.Murthy",21,add);
         Course course=new Course("java","python");
-        University university=new University(student,course,"CSE");
+        University university=new University(student,course,"CSE","ZOHOUNIVERSITY","CHENNAI");
         System.out.println(add);
         System.out.println(student);
         System.out.println(course);
