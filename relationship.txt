@@ -26,25 +26,22 @@ class Student1{
 }
 class Department {
     Student1 student;
+    String departmentName;
     Course course;
-    Department(Student1 student,Course course){
+    Department(Student1 student,Course course,String departmentName){
         this.student=student;
         this.course=course;
+        this.departmentName=departmentName;
     }
     public String toString(){
-        return student+" "+course;
+        return student+" "+course+" "+departmentName;
     }
 
 }
 class University{
     Department department;
-    Course c1;
-    Student1 s1;
-    University(Student1 s1,Course c1){
-        this.department =new Department(s1,c1);
-    }
-    public String toString(){
-        return c1+" "+department+" "+s1;
+    University(Student1 s1,Course c1,String departmentName){
+        this.department =new Department(s1,c1,departmentName);
     }
 }
 class Address{
@@ -60,19 +57,18 @@ class Address{
         return area+" "+city+" "+pincode;
     }
 }
-public class RelationSHip {
+public class RelationShip {
     public static void main(String args[]){
         Address add=new Address("tirupati","Chittoor","517501");
         Student1 student=new Student1("M.Murthy",21,add);
         Course course=new Course("java","python");
-        Department department=new Department(student,course);
-        University university=new University(student,course);
-        university =null;
+        University university=new University(student,course,"CSE");
         System.out.println(add);
         System.out.println(student);
         System.out.println(course);
-        System.out.println(department);
-        System.out.println(university);
+        System.out.println(university.department);
+        university=null;
+        System.out.println(university.department);
     }
 }
 //______________________________________________________________________________________
