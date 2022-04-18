@@ -27,6 +27,7 @@ class Watch{
 }
 class Person  extends Mammal implements LivingBeing{
     Watch watch;
+    Heart h1;
     public String RespiratorySystem(){
         return "through nose";
     }
@@ -35,15 +36,13 @@ class Person  extends Mammal implements LivingBeing{
     }
     Person(int hands,int legs){
         super(hands,legs);
+        h1=new Heart();
     }
     Person(Watch w1){
         watch=w1;
     }
-    //here i want to show composition sir
-    Heart h=new Heart();
-    //here i want to show aggregation sir
     public void display(){
-        System.out.println(RespiratorySystem()+" "+BloodCirculation()+" "+ hands+" "+legs+h.inhale+" "+h.exhale);
+        System.out.println(RespiratorySystem()+" "+BloodCirculation()+" "+ hands+" "+legs+h1.inhale+" "+h1.exhale);
     }
 }
 public class JavaApplication14 {
@@ -52,8 +51,6 @@ public class JavaApplication14 {
         //sir,here i create person object,then automatically in heap,it create human object 
         //along with heart object
         Person p=new Person(2,2);
-        p.RespiratorySystem();
-        p.BloodCirculation();
         p.display();
         //heart object is created in heap
         p=null;
