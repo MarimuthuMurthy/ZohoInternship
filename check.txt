@@ -1,0 +1,137 @@
+import javax.security.auth.Subject;
+import javax.xml.stream.events.StartDocument;
+
+import java.util.ArrayList;
+class MarksOfStudent{
+    public  int subject1;
+    public  int subject2;
+    public  int subject3;
+    public  int subject4;
+    public  int subject5;
+    public String toString(){return subject1+" "+subject2+" "+subject3+" "+subject4+" "+subject5;}
+}
+class Subjects{
+    String subject1;
+    String subject2;
+    String subject3;
+    String subject4;
+    String subject5;
+    Subjects(String sub1,String sub2,String sub3,String sub4,String sub5){
+        this.subject1=sub1;
+        this.subject2=sub2;
+        this.subject3=sub3;
+        this.subject4=sub4;
+        this.subject5=sub5;
+    }
+    public String toString(){
+        return subject1+" "+subject2+" "+subject3+" "+subject4+" "+subject5+"\n";
+    }
+}
+class Faculty{
+    String faculty1;
+    String faculty2;
+    String faculty3;
+    String faculty4;
+    String faculty5;
+    Faculty(String faculty1,String faculty2,String faculty3,String faculty4,String faculty5){
+        this.faculty1=faculty1;
+        this.faculty2=faculty2;
+        this.faculty3=faculty3;
+        this.faculty4=faculty4;
+        this.faculty5=faculty5;
+    }
+    public String toString(){
+        return faculty1+" "+faculty2+" "+faculty3+" "+faculty4+" "+faculty5;
+    }
+}
+class Department{
+    CseDepartment cse;
+    EceDepartment ece;
+    MechanicalDepartment mech;
+    ItDepartment it;
+    Department(String department,MarksOfStudent m1){
+        if(department.equals("cse")){cse=new CseDepartment(m1);}
+        if(department.equals("ece")){ece=new EceDepartment(m1);}
+        if(department.equals("mech")){mech=new MechanicalDepartment(m1);}
+        if(department.equals("it")){it=new ItDepartment(m1);}
+    }
+}
+ class CseDepartment{
+    Subjects s;
+    MarksOfStudent marksOfStudent;
+    Faculty f;
+    CseDepartment(MarksOfStudent m3) {
+        marksOfStudent =m3;
+        s = new Subjects("java", "python", "c","c++","html");
+        f = new Faculty("a", "b", "c", "d", "e");
+    }
+    public String toString(){
+        return s.subject1+" "+s.subject2+" "+s.subject3+" "+s.subject4+" "+s.subject5+"\n"+
+                f.faculty1+" "+f.faculty2+" "+f.faculty3+" "+f.faculty4+" "+f.faculty5+"\n"+
+                marksOfStudent;
+
+    }
+}
+ class EceDepartment{
+    Subjects s1;
+     Faculty f1;
+     MarksOfStudent m;
+     EceDepartment(MarksOfStudent m){
+         this.m=m;
+         s1=new Subjects("analog","signals","wirelss","communication","system");
+         f1=new Faculty("f","g","h","i","j");}
+     public String toString(){
+         return s1.subject1+" "+s1.subject2+" "+s1.subject3+" "+s1.subject4+" "+s1.subject5+"\n"+
+                 f1.faculty1+" "+f1.faculty2+" "+f1.faculty3+" "+f1.faculty4+" "+f1.faculty5+"\n "+m;
+     }
+}
+ class MechanicalDepartment{
+    Subjects s3;
+    Faculty f2;
+    MarksOfStudent m;
+    MechanicalDepartment(MarksOfStudent m) {
+        this.m=m;
+        s3 = new Subjects("welding", "sheilding", "mech","mech4","mech5");
+        f2 = new Faculty("k", "l", "m", "n", "o");
+    }
+     public String toString(){
+         return s3.subject1+" "+s3.subject2+" "+s3.subject3+" "+s3.subject4+" "+s3.subject5+"\n"+
+                 f2.faculty1+" "+f2.faculty2+" "+f2.faculty3+" "+f2.faculty4+" "+f2.faculty5+"\n"+m;
+     }
+}
+ class ItDepartment{
+    Subjects s4;
+    Faculty f4;
+    MarksOfStudent m;
+    ItDepartment(MarksOfStudent m) {
+        this.m=m;
+        s4 = new Subjects("software", "information", "technology", "computer", "networks");
+
+        f4 = new Faculty( "p", "q", "r", "s", "t");
+    }
+     public String toString(){
+         return s4.subject1+" "+s4.subject2+" "+s4.subject3+" "+s4.subject4+" "+s4.subject5+"\n"+
+                 f4.faculty1+" "+f4.faculty2+" "+f4.faculty3+" "+f4.faculty4+" "+f4.faculty5+"\n";
+     }
+
+}
+class Student
+{
+    public int studentId;
+    public String studentName;
+    public String phoneNo;
+    public int roomNo;
+    public String hostelName;
+    public Department dept;
+    public String department;
+    Student(int studentId,String studentName,String phoneNo,int roomNo,String hostelName,String department,MarksOfStudent marksOfStudent){
+        this.studentId=studentId;
+        this.studentName=studentName;
+        this.phoneNo=phoneNo;
+        this.hostelName=hostelName;
+        this.roomNo=roomNo;
+        this.department=department;
+        dept=new Department(department,marksOfStudent);
+    }
+    public String toString(){return studentId+" "+studentName+" "+phoneNo+" "+roomNo+" "+hostelName+" "+department;}
+}
