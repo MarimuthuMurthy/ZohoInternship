@@ -15,20 +15,20 @@ class Subjects{
         this.subject5=subject5;
     }
 }
-class Faculty{
-    String faculty1;
-    String faculty2;
-    String faculty3;
-    String faculty4;
-    String faculty5;
-    Faculty(String faculty1,String faculty2,String faculty3,String faculty4,String faculty5){
-        this.faculty1=faculty1;
-        this.faculty2=faculty2;
-        this.faculty3=faculty3;
-        this.faculty4=faculty4;
-        this.faculty5=faculty5;
-    }
-}
+//class Faculty{
+//    String faculty1;
+//    String faculty2;
+//    String faculty3;
+//    String faculty4;
+//    String faculty5;
+//    Faculty(String faculty1,String faculty2,String faculty3,String faculty4,String faculty5){
+//        this.faculty1=faculty1;
+//        this.faculty2=faculty2;
+//        this.faculty3=faculty3;
+//        this.faculty4=faculty4;
+//        this.faculty5=faculty5;
+//    }
+//}
 class Marks{
      Subjects subjects;
     static Scanner sc=new Scanner(System.in);
