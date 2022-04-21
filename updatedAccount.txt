@@ -46,12 +46,19 @@ public class JavaApplication12 {
     public static int studentId=0;
     static int count=0;
     static boolean end=true;
-    static ArrayList<Marks> mark=new ArrayList<>();
     public static Marks getMarks(String dept,int id){
-        if(dept.equals("cse")){marks= new Marks(CseDepartment.s);return marks;}
-        if(dept.equals("ece")){marks=new Marks(EceDepartment.s1);return marks;}
-        if(dept.equals("mech")){marks=new Marks(MechanicalDepartment.s3);return marks;}
-        else {marks=new Marks(ItDepartment.s4);return marks;}
+        if(dept.equals("cse")){
+            CseDepartment cse=CseDepartment.getInstance();
+            marks= new Marks(cse.s);return marks;}
+        if(dept.equals("ece")){
+            EceDepartment ece=EceDepartment.getInstance();
+            marks=new Marks(ece.s1);return marks;}
+        if(dept.equals("mech")){
+            MechanicalDepartment mech = MechanicalDepartment.getInstance();
+            marks=new Marks(mech.s3);return marks;}
+        else {
+            ItDepartment it=ItDepartment.getInstance();
+            marks=new Marks(it.s4);return marks;}
     }
     public static Student getDetails()
     {
@@ -82,7 +89,11 @@ public class JavaApplication12 {
                 throw new HostelNameException("Sorry! you are not allowed in the hostel");
             }
             System.out.print("Enter Department Name: ");
-            String departmentName=sc.next();
+            String departmentName=sc.next().toLowerCase();
+            while(!(departmentName.equals("cse") || departmentName.equals("ece") || departmentName.equals("mech") || departmentName.equals("it"))){
+                System.out.println("Invalid department");
+                departmentName= sc.next();;
+            }
             marks =getMarks(departmentName,studentId);
             s1 = new Student(studentId, studentName, studentPhone, studentRoom, studentHostel,departmentName,marks);
         return s1;
@@ -118,7 +129,6 @@ public class JavaApplication12 {
                     int bount = 0;
                     if (count == 0)//for first record purpose only
                     {
-                        //departmentDetails.add(d1);
                         studentDetails.add(s2);
                         System.out.println("_ _ _ _ _ __ _ _ _ _ __ _ _ _ _ __");
                         System.out.println("STUDENT RECORD ADDED SUCCESFULLY");
@@ -148,27 +158,32 @@ public class JavaApplication12 {
 
             }
             else if(user.equals("want")) {
-                System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _");
-                System.out.println("press 1:for all student details");
-                System.out.println("press 2:for departmentwise students");
-                int selection = sc.nextInt();
-                System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _");
-                switch (selection) {
-                    case 2:
-                    System.out.println("Enter the department: ");
-                    String dept = sc.next();
-                    for (Student detail : studentDetails) {
-                        if (detail.department.equals(dept)) {
-                            System.out.println(detail);
-                        }
-                    }
-                    break;
-                    case 1:for (Student detail : studentDetails) {
+                if (studentDetails.isEmpty()) {
+                    System.out.println("NO RECORDS FOUND");
+                } else {
+                    System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _");
+                    System.out.println("press 1:for all student details");
+                    System.out.println("press 2:for departmentwise students");
+                    int selection = sc.nextInt();
+                    System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _");
+                    switch (selection) {
+                        case 2:
+                            System.out.println("Enter the department: ");
+                            String dept = sc.next();
+                            for (Student detail : studentDetails) {
+                                if (detail.department.equals(dept)) {
+                                    System.out.println(detail);
+                                }
+                            }
+                            break;
+                        case 1:
+                            for (Student detail : studentDetails) {
                                 System.out.println(detail);
-                         }
-                         break;
-                    default:
-                        System.out.println("Mispelled occur");
+                            }
+                            break;
+                        default:
+                            System.out.println("TYPE CORRECTLY");
+                    }
                 }
             }
             else if(user.equals("remove"))
