@@ -59,21 +59,45 @@ class Marks{
     }
 }
 class CseDepartment{
-        static Subjects s = new Subjects("java", "python", "c","c++","html");
-        static Faculty f = new Faculty("a", "b", "c", "d", "e");
+    private static CseDepartment cseDepartment;
+    Subjects s = new Subjects("java", "python", "c","c++","html");
+    Faculty f = new Faculty("a", "b", "c", "d", "e");
+    private CseDepartment(){}
+    public static CseDepartment getInstance(){
+        if(cseDepartment ==null){cseDepartment=new CseDepartment();}
+        return cseDepartment;
+    }
 }
 class EceDepartment{
-
-        static Subjects s1=new Subjects("analog","signals","wirelss","communication","system");
-        static Faculty f1=new Faculty("f","g","h","i","j");}
+    private static EceDepartment eceDepartment;
+    Subjects s1=new Subjects("analog","signals","wirelss","communication","system");
+    Faculty f1=new Faculty("f","g","h","i","j");
+    private EceDepartment(){}
+    public static EceDepartment getInstance(){
+        if(eceDepartment ==null){eceDepartment=new EceDepartment();}
+        return eceDepartment;
+    }
+}
 
 class MechanicalDepartment{
-        static Subjects s3 = new Subjects("welding", "sheilding", "mech","mech4","mech5");
-        static Faculty f2 = new Faculty("k", "l", "m", "n", "o");
+    private static MechanicalDepartment mechanicalDepartment;
+     Subjects s3 = new Subjects("welding", "sheilding", "mech","mech4","mech5");
+     Faculty f2 = new Faculty("k", "l", "m", "n", "o");
+    private MechanicalDepartment(){}
+    public static MechanicalDepartment getInstance(){
+        if(mechanicalDepartment ==null){mechanicalDepartment=new MechanicalDepartment();}
+        return mechanicalDepartment;
+    }
 }
 class ItDepartment{
-        static Subjects s4 = new Subjects("software", "information", "technology", "computer", "networks");
-        static Faculty f4 = new Faculty( "p", "q", "r", "s", "t");
+    private static ItDepartment itDepartment;
+    Subjects s4 = new Subjects("software", "information", "technology", "computer", "networks");
+    Faculty f4 = new Faculty( "p", "q", "r", "s", "t");
+    private ItDepartment(){}
+    public static ItDepartment getInstance(){
+        if(itDepartment ==null){itDepartment=new ItDepartment();}
+        return itDepartment;
+    }
 }
 class Student
 {
